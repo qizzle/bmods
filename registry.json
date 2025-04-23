@@ -61,7 +61,7 @@
       "category": "Canvas Images",
       "creator": "TheMonDon"
     },
-    "CanvasGenerateProgressBar_MOD.js": {
+    "CanvasGenerateProgressBar.js": {
       "md5": "1281aeebdbfd9457f1da1276f1d4c1f9",
       "name": "Canvas Generate Progress Bar",
       "modules": [
@@ -206,7 +206,7 @@
       "category": "Lists",
       "creator": "LikRus"
     },
-    "createFile_MOD.js": {
+    "createFile.js": {
       "md5": "fd85461507b50d1c215abce98e30986e",
       "name": "Create File",
       "modules": [],
@@ -296,7 +296,7 @@
       "category": "AI",
       "creator": "qschnitzel, splatchoot"
     },
-    "execute_MOD.js": {
+    "execute.js": {
       "md5": "47513c9b2412e154c2a88e47545f3cfb",
       "name": "Execute",
       "modules": [],
@@ -441,8 +441,8 @@
       "category": "WebAPIs",
       "creator": "candiedapple"
     },
-    "getBotInfo_MOD.js": {
-      "md5": "ac314f75066c8687a55a83e846e3c1d9",
+    "getBotInfo.js": {
+      "md5": "e6a380f60a42e434a60bf55280c7fa17",
       "name": "Get Bot Info",
       "modules": [],
       "category": "Bot",
@@ -708,7 +708,7 @@
       "category": "Text",
       "creator": "tao"
     },
-    "joinVoiceChannel_MOD.js": {
+    "joinVoiceChannel.js": {
       "md5": "9ce953c809eaa964d45f0797df210203",
       "name": "Join Voice Channel",
       "modules": [],
@@ -798,7 +798,7 @@
       "category": "Global Data",
       "creator": "candiedapple"
     },
-    "multiCompare_MOD.js": {
+    "multiCompare.js": {
       "md5": "7a94660be81a4f0f2ee3b05ac2341b16",
       "name": "Multiple Comparisons",
       "modules": [],
@@ -812,7 +812,7 @@
       "category": "Members",
       "creator": "LikRus"
     },
-    "multicreateListElement_MOD.js": {
+    "multicreateListElement.js": {
       "md5": "fcfc20c4338a46073862815e7d942a53",
       "name": "Multi Create List Element",
       "modules": [],
@@ -900,7 +900,7 @@
       "category": "Music",
       "creator": "Acedia"
     },
-    "playMP3_MOD.js": {
+    "playMP3.js": {
       "md5": "40b30ca528fce14d769a8571ae011202",
       "name": "Play File",
       "modules": [
@@ -925,7 +925,7 @@
       "category": "Discord-Player Music",
       "creator": "TheMonDon"
     },
-    "playYT_MOD.js": {
+    "playYT.js": {
       "md5": "a4777a9e1f55553e6efb476ebc7ef595",
       "name": "Play YouTube Song",
       "modules": [],
@@ -1109,7 +1109,7 @@
       "category": "Game",
       "creator": "candiedapple"
     },
-    "skipInQueue_MOD.js": {
+    "skipInQueue.js": {
       "md5": "3c108735e918346ff285d11d48656f2f",
       "name": "Skip In Queue",
       "modules": [],
