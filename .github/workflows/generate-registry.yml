@@ -1,0 +1,66 @@
+name: Generate MD5 Registry
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  generate-registry:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Generate registry.json
+      run: |
+        python - << 'EOF'
+        import os
+        import json
+        import hashlib
+
+        # Folders to check
+        folders = ["Actions", "Automations", "Events", "Themes", "Translations"]
+        registry = {}
+
+        # Process each folder
+        for folder in folders:
+            if not os.path.exists(folder):
+                print(f"Warning: {folder} directory not found. Skipping.")
+                continue
+            
+            registry[folder] = {}
+            
+            # Walk through all files in the folder
+            for root, _, files in os.walk(folder):
+                for file in files:
+                    file_path = os.path.join(root, file)
+                    relative_path = os.path.relpath(file_path, folder)
+                    
+                    # Calculate MD5 hash
+                    with open(file_path, 'rb') as f:
+                        file_hash = hashlib.md5(f.read()).hexdigest()
+                    
+                    # Add to registry
+                    registry[folder][relative_path] = file_hash
+
+        # Write registry to file
+        with open('registry.json', 'w') as f:
+            json.dump(registry, f, indent=2)
+
+        print("Registry file generated successfully!")
+        EOF
+
+    - name: Commit and push registry.json
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add registry.json
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with latest MD5 checksums"
+        git push
