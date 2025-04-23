@@ -1,4 +1,4 @@
-name: Generate MD5 Registry
+name: Generate Mod Registry
 
 on:
   push:
@@ -13,48 +13,107 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v3
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
       with:
-        python-version: '3.10'
+        node-version: '16'
 
     - name: Generate registry.json
       run: |
-        python - << 'EOF'
-        import os
-        import json
-        import hashlib
+        node - << 'EOF'
+        const fs = require('fs');
+        const path = require('path');
+        const crypto = require('crypto');
 
-        # Folders to check
-        folders = ["Actions", "Automations", "Events", "Themes", "Translations"]
-        registry = {}
+        // Folders to check
+        const folders = ["Actions", "Automations", "Events", "Themes", "Translations"];
+        const registry = {};
 
-        # Process each folder
-        for folder in folders:
-            if not os.path.exists(folder):
-                print(f"Warning: {folder} directory not found. Skipping.")
-                continue
+        // Process each folder
+        for (const folder of folders) {
+          if (!fs.existsSync(folder)) {
+            console.log(`Warning: ${folder} directory not found. Skipping.`);
+            continue;
+          }
+          
+          registry[folder] = {};
+          
+          // Function to walk directory recursively
+          const walkDir = (dir, baseDir) => {
+            const files = fs.readdirSync(dir);
             
-            registry[folder] = {}
-            
-            # Walk through all files in the folder
-            for root, _, files in os.walk(folder):
-                for file in files:
-                    file_path = os.path.join(root, file)
-                    relative_path = os.path.relpath(file_path, folder)
+            for (const file of files) {
+              const filePath = path.join(dir, file);
+              const stats = fs.statSync(filePath);
+              
+              if (stats.isDirectory()) {
+                walkDir(filePath, baseDir);
+              } else {
+                const relativePath = path.relative(baseDir, filePath);
+                
+                // Calculate MD5 hash
+                const fileContent = fs.readFileSync(filePath);
+                const md5Hash = crypto.createHash('md5').update(fileContent).digest('hex');
+                
+                let metadata = {
+                  md5: md5Hash
+                };
+                
+                // Extract metadata for JavaScript files
+                if (path.extname(filePath) === '.js' && (folder === 'Actions' || folder === 'Automations' || folder === 'Events')) {
+                  try {
+                    // Read file content as string
+                    const content = fileContent.toString('utf8');
                     
-                    # Calculate MD5 hash
-                    with open(file_path, 'rb') as f:
-                        file_hash = hashlib.md5(f.read()).hexdigest()
+                    // Extract name
+                    const nameMatch = content.match(/data:\s*{\s*name:\s*"([^"]+)"/);
+                    if (nameMatch && nameMatch[1]) {
+                      metadata.name = nameMatch[1];
+                    }
                     
-                    # Add to registry
-                    registry[folder][relative_path] = file_hash
+                    // Extract modules
+                    const modulesMatch = content.match(/modules:\s*\[(.*?)\]/s);
+                    if (modulesMatch && modulesMatch[1]) {
+                      const modulesStr = modulesMatch[1].trim();
+                      if (modulesStr) {
+                        // Parse module strings from the array notation
+                        metadata.modules = modulesStr.split(',')
+                          .map(m => m.trim().replace(/["']/g, ''))
+                          .filter(m => m);
+                      } else {
+                        metadata.modules = [];
+                      }
+                    } else {
+                      metadata.modules = [];
+                    }
+                    
+                    // Extract category
+                    const categoryMatch = content.match(/category:\s*"([^"]+)"/);
+                    if (categoryMatch && categoryMatch[1]) {
+                      metadata.category = categoryMatch[1];
+                    }
+                    
+                    // Extract creator from info block
+                    const creatorMatch = content.match(/creator:\s*"([^"]+)"/);
+                    if (creatorMatch && creatorMatch[1]) {
+                      metadata.creator = creatorMatch[1];
+                    }
+                  } catch (err) {
+                    console.error(`Error parsing metadata from ${filePath}:`, err);
+                  }
+                }
+                
+                registry[folder][relativePath] = metadata;
+              }
+            }
+          };
+          
+          walkDir(folder, folder);
+        }
 
-        # Write registry to file
-        with open('registry.json', 'w') as f:
-            json.dump(registry, f, indent=2)
-
-        print("Registry file generated successfully!")
+        // Write registry to file
+        fs.writeFileSync('registry.json', JSON.stringify(registry, null, 2));
+        console.log("Registry file generated successfully!");
         EOF
 
     - name: Commit and push registry.json
@@ -62,5 +121,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add registry.json
-        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with latest MD5 checksums"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with latest mod metadata"
         git push
