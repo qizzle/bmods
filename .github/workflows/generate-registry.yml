@@ -157,6 +157,12 @@ jobs:
               } else if (folder === 'Actions' || folder === 'Events') {
                 // For file-based mods (Actions, Events)
                 const relativePath = path.relative(baseDir, itemPath);
+                
+                // Check if the file has "_MOD" in its name
+                if (!relativePath.includes('_MOD')) {
+                  continue; // Skip files without _MOD in their names
+                }
+                
                 const md5Hash = calculateMD5(itemPath);
                 
                 let metadata = {
@@ -187,5 +193,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add registry.json
-        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with folder-specific metadata"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json"
         git push
