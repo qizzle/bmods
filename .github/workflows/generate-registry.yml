@@ -43,11 +43,28 @@ jobs:
             
             // Extract name - handle differently for Events vs Actions
             if (folderType === 'Events') {
-              // For Events, name could be in eventData or directly in data
-              const nameMatch = content.match(/eventData:\s*{\s*name:\s*"([^"]+)"/s) || 
-                                content.match(/data:\s*{\s*name:\s*"([^"]+)"/s);
-              if (nameMatch && nameMatch[1]) {
-                metadata.name = nameMatch[1];
+              // First check for direct module.exports.name pattern (new format)
+              const directNameMatch = content.match(/module\.exports\s*=\s*{[^}]*name:\s*"([^"]+)"/s);
+              if (directNameMatch && directNameMatch[1]) {
+                metadata.name = directNameMatch[1];
+              } else {
+                // Fallback to old format
+                const nameMatch = content.match(/eventData:\s*{\s*name:\s*"([^"]+)"/s) || 
+                                  content.match(/data:\s*{\s*name:\s*"([^"]+)"/s);
+                if (nameMatch && nameMatch[1]) {
+                  metadata.name = nameMatch[1];
+                }
+              }
+              
+              // Extract nameSchemes for Events (new format)
+              const nameSchemesMatch = content.match(/nameSchemes:\s*\[(.*?)\]/s);
+              if (nameSchemesMatch && nameSchemesMatch[1]) {
+                const schemeStr = nameSchemesMatch[1].trim();
+                if (schemeStr) {
+                  metadata.nameSchemes = schemeStr.split(',')
+                    .map(s => s.trim().replace(/["']/g, ''))
+                    .filter(s => s);
+                }
               }
             } else {
               // For Actions and others
