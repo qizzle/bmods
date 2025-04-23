@@ -36,21 +36,42 @@ jobs:
         };
 
         // Extract metadata from Actions/Events JS files
-        const extractJSMetadata = (filePath) => {
+        const extractJSMetadata = (filePath, folderType) => {
           const metadata = {};
           try {
             const content = fs.readFileSync(filePath, 'utf8');
             
-            // Extract name
-            const nameMatch = content.match(/data:\s*{\s*name:\s*"([^"]+)"/);
-            if (nameMatch && nameMatch[1]) {
-              metadata.name = nameMatch[1];
+            // Extract name - handle differently for Events vs Actions
+            if (folderType === 'Events') {
+              // For Events, name could be in eventData or directly in data
+              const nameMatch = content.match(/eventData:\s*{\s*name:\s*"([^"]+)"/s) || 
+                                content.match(/data:\s*{\s*name:\s*"([^"]+)"/s);
+              if (nameMatch && nameMatch[1]) {
+                metadata.name = nameMatch[1];
+              }
+            } else {
+              // For Actions and others
+              const nameMatch = content.match(/data:\s*{\s*name:\s*"([^"]+)"/s);
+              if (nameMatch && nameMatch[1]) {
+                metadata.name = nameMatch[1];
+              }
             }
             
-            // Extract description - could be in data block or info block
+            // Extract display name for Events
+            if (folderType === 'Events') {
+              const displayNameMatch = content.match(/displayName:\s*"([^"]+)"/);
+              if (displayNameMatch && displayNameMatch[1]) {
+                metadata.displayName = displayNameMatch[1];
+              }
+            }
+            
+            // Extract description - could be in multiple places
             let descriptionMatch = content.match(/data:\s*{[^}]*description:\s*"([^"]+)"/s);
             if (!descriptionMatch) {
               descriptionMatch = content.match(/info:\s*{[^}]*description:\s*"([^"]+)"/s);
+            }
+            if (!descriptionMatch && folderType === 'Events') {
+              descriptionMatch = content.match(/eventData:\s*{[^}]*description:\s*"([^"]+)"/s);
             }
             if (descriptionMatch && descriptionMatch[1]) {
               metadata.description = descriptionMatch[1];
@@ -101,11 +122,15 @@ jobs:
                 metadata.name = dataJson.name;
               }
               
+              if (dataJson.displayName) {
+                metadata.displayName = dataJson.displayName;
+              }
+              
               if (dataJson.author) {
                 metadata.author = dataJson.author;
               }
               
-              // For Automations and now also for any type that might have description
+              // For any type that might have description
               if (dataJson.description) {
                 metadata.description = dataJson.description;
               }
@@ -180,7 +205,7 @@ jobs:
                 
                 // For JS files, extract additional metadata
                 if (path.extname(itemPath) === '.js') {
-                  const jsMetadata = extractJSMetadata(itemPath);
+                  const jsMetadata = extractJSMetadata(itemPath, folder);
                   metadata = { ...metadata, ...jsMetadata };
                 }
                 
