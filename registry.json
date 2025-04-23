@@ -1280,11 +1280,7 @@
       "creator": "Acedia QOLs"
     }
   },
-  "Automations": {
-    "wip": {
-      "md5": "d41d8cd98f00b204e9800998ecf8427e"
-    }
-  },
+  "Automations": {},
   "Events": {
     "audit_log_created_MOD.js": {
       "md5": "6559563f4b2ff640ce597aafa1efee05",
@@ -1355,121 +1351,154 @@
     }
   },
   "Themes": {
-    ".windows98/data.json": {
-      "md5": "e1a51803c48c05bb193dfc88bc5d4382"
+    ".windows98": {
+      "name": "win98",
+      "files": {
+        "data.json": "e1a51803c48c05bb193dfc88bc5d4382",
+        "theme.css": "3820b9eef6dfc49966cde403ac0244e7"
+      }
     },
-    ".windows98/theme.css": {
-      "md5": "3820b9eef6dfc49966cde403ac0244e7"
+    "Dark_Blurple_MOD": {
+      "name": "Blurple",
+      "author": "default.io",
+      "files": {
+        "data.json": "392619eafbdf48a010b0a9724369eeaf",
+        "theme.css": "86db4415e0262dc984e356a96314265d"
+      }
     },
-    "Dark_Blurple_MOD/data.json": {
-      "md5": "392619eafbdf48a010b0a9724369eeaf"
+    "schnitzel_MOD": {
+      "name": "schnitzel",
+      "author": "qschnitzel",
+      "files": {
+        "data.json": "fb05b7b7df2b8ca38c71f3588c071a1e",
+        "theme.css": "c6c018d193b6d466bcc2cfcb1c653225"
+      }
     },
-    "Dark_Blurple_MOD/theme.css": {
-      "md5": "86db4415e0262dc984e356a96314265d"
+    "studio_MOD": {
+      "name": "Studio",
+      "files": {
+        "data.json": "880bf5bac44ac3c9eb378cc1b0c3e8f6",
+        "theme.css": "43cdcd3f62a51b0f8ae2bc84f7e08fd5"
+      }
     },
-    "schnitzel_MOD/data.json": {
-      "md5": "fb05b7b7df2b8ca38c71f3588c071a1e"
-    },
-    "schnitzel_MOD/theme.css": {
-      "md5": "c6c018d193b6d466bcc2cfcb1c653225"
-    },
-    "studio_MOD/data.json": {
-      "md5": "880bf5bac44ac3c9eb378cc1b0c3e8f6"
-    },
-    "studio_MOD/theme.css": {
-      "md5": "43cdcd3f62a51b0f8ae2bc84f7e08fd5"
-    },
-    "y2kpurple_MOD/data.json": {
-      "md5": "281119361a4ec17478e73846c0432ef5"
-    },
-    "y2kpurple_MOD/theme.css": {
-      "md5": "cca56da90be485de4fd2aab6964eca4e"
+    "y2kpurple_MOD": {
+      "name": "Y2K Purple",
+      "author": "candiedapple",
+      "files": {
+        "data.json": "281119361a4ec17478e73846c0432ef5",
+        "theme.css": "cca56da90be485de4fd2aab6964eca4e"
+      }
     }
   },
   "Translations": {
-    ".default_arabic/data.json": {
-      "md5": "aff49e86860817f2c48abc50683f06e8"
+    ".default_arabic": {
+      "name": "Arabic",
+      "author": ".3v3",
+      "files": {
+        "data.json": "aff49e86860817f2c48abc50683f06e8",
+        "strings.json": "30634eb42cf40a0c84a81fcee08ffdb3"
+      }
     },
-    ".default_arabic/strings.json": {
-      "md5": "30634eb42cf40a0c84a81fcee08ffdb3"
+    ".default_english": {
+      "name": "English",
+      "author": "RatWasHere",
+      "files": {
+        "data.json": "486bcbc078797c5336fc2e6d929d48ae",
+        "strings.json": "3251ac2509aed1ca43f8d11730e79ba0"
+      }
     },
-    ".default_english/data.json": {
-      "md5": "486bcbc078797c5336fc2e6d929d48ae"
+    ".default_french": {
+      "name": "French",
+      "files": {
+        "data.json": "756076c7418a5d6db6b6b9426a079440",
+        "strings.json": "5204ce5d983fe5ca99de8c52b4835e9b"
+      }
     },
-    ".default_english/strings.json": {
-      "md5": "3251ac2509aed1ca43f8d11730e79ba0"
+    ".default_german": {
+      "name": "German",
+      "author": "qschnitzel",
+      "files": {
+        "data.json": "6beea30c8b3dc9809439a6f490da3bb0",
+        "strings.json": "13ddeed1c250f939e15c10fc6aafa962"
+      }
     },
-    ".default_french/data.json": {
-      "md5": "756076c7418a5d6db6b6b9426a079440"
+    ".default_polish": {
+      "name": "Polish",
+      "author": "matix2189",
+      "files": {
+        "data.json": "c89b3f6cb610e80247c98bfbffe7c821",
+        "strings.json": "5488736a21e3aef91db8c957a152c046"
+      }
     },
-    ".default_french/strings.json": {
-      "md5": "5204ce5d983fe5ca99de8c52b4835e9b"
+    ".default_portuguese": {
+      "name": "Portuguese",
+      "author": "registrador",
+      "files": {
+        "data.json": "72a548a2dc3b5eddf13782e727504e3d",
+        "strings.json": "5080f1cbe25285edb35d7bc7b746aa74"
+      }
     },
-    ".default_german/data.json": {
-      "md5": "6beea30c8b3dc9809439a6f490da3bb0"
+    ".default_romanian": {
+      "name": "Romanian",
+      "files": {
+        "data.json": "5fe78d9d63fd6321f99923e01871326e",
+        "strings.json": "234b681ed656367a1e4077bd1227c9d1"
+      }
     },
-    ".default_german/strings.json": {
-      "md5": "13ddeed1c250f939e15c10fc6aafa962"
+    ".default_russian": {
+      "name": "Russian",
+      "files": {
+        "data.json": "30a0274235b0af03273dff0b605a0b13",
+        "strings.json": "58faf96495f283ff7780f38951da46d9"
+      }
     },
-    ".default_polish/data.json": {
-      "md5": "c89b3f6cb610e80247c98bfbffe7c821"
+    ".default_spanish": {
+      "name": "Spanish",
+      "author": "alyko.",
+      "files": {
+        "data.json": "f01d95e97dd1fb9354e9a6beda1c8d81",
+        "strings.json": "14589f1311d717181cd120f971da0af5"
+      }
     },
-    ".default_polish/strings.json": {
-      "md5": "5488736a21e3aef91db8c957a152c046"
+    ".default_turkish": {
+      "name": "Turkish",
+      "author": "bunnywasnothere",
+      "files": {
+        "data.json": "284ec0f85023d449d9bb82423dce57f4",
+        "strings.json": "f14c6e0c60f4300a88d1b1b7b1019da5"
+      }
     },
-    ".default_portuguese/data.json": {
-      "md5": "72a548a2dc3b5eddf13782e727504e3d"
+    "brainrot": {
+      "name": "Brainrot (skibbidi)",
+      "author": "devvyyxyz",
+      "files": {
+        "data.json": "748034beb86b6feeea9c286ea910f015",
+        "strings.json": "f7656c5dda1299386258cf31e248f435"
+      }
     },
-    ".default_portuguese/strings.json": {
-      "md5": "5080f1cbe25285edb35d7bc7b746aa74"
+    "lolcat": {
+      "name": "Lolcat",
+      "author": "qschnitzel",
+      "files": {
+        "data.json": "d015b2aaf1536d59de100c3e0bd0c07f",
+        "strings.json": "185870c55b10975b3ac95405f497b25c"
+      }
     },
-    ".default_romanian/data.json": {
-      "md5": "5fe78d9d63fd6321f99923e01871326e"
+    "morse": {
+      "name": "Morse Code",
+      "author": "qschnitzel",
+      "files": {
+        "data.json": "f60e573f2f5fb7c026ca5cd2dfdcb074",
+        "strings.json": "95063f3cc6322773fe280270215b4a1f"
+      }
     },
-    ".default_romanian/strings.json": {
-      "md5": "234b681ed656367a1e4077bd1227c9d1"
-    },
-    ".default_russian/data.json": {
-      "md5": "30a0274235b0af03273dff0b605a0b13"
-    },
-    ".default_russian/strings.json": {
-      "md5": "58faf96495f283ff7780f38951da46d9"
-    },
-    ".default_spanish/data.json": {
-      "md5": "f01d95e97dd1fb9354e9a6beda1c8d81"
-    },
-    ".default_spanish/strings.json": {
-      "md5": "14589f1311d717181cd120f971da0af5"
-    },
-    ".default_turkish/data.json": {
-      "md5": "284ec0f85023d449d9bb82423dce57f4"
-    },
-    ".default_turkish/strings.json": {
-      "md5": "f14c6e0c60f4300a88d1b1b7b1019da5"
-    },
-    "brainrot/data.json": {
-      "md5": "748034beb86b6feeea9c286ea910f015"
-    },
-    "brainrot/strings.json": {
-      "md5": "f7656c5dda1299386258cf31e248f435"
-    },
-    "lolcat/data.json": {
-      "md5": "d015b2aaf1536d59de100c3e0bd0c07f"
-    },
-    "lolcat/strings.json": {
-      "md5": "185870c55b10975b3ac95405f497b25c"
-    },
-    "morse/data.json": {
-      "md5": "f60e573f2f5fb7c026ca5cd2dfdcb074"
-    },
-    "morse/strings.json": {
-      "md5": "95063f3cc6322773fe280270215b4a1f"
-    },
-    "uwu/data.json": {
-      "md5": "b5a6eeb8f1ef80881b527a70a7ed51c3"
-    },
-    "uwu/strings.json": {
-      "md5": "2ffc5522a76d82ad8bd89b19fbecaa42"
+    "uwu": {
+      "name": "UwU! (brainrot)",
+      "author": "qschnitzel",
+      "files": {
+        "data.json": "b5a6eeb8f1ef80881b527a70a7ed51c3",
+        "strings.json": "2ffc5522a76d82ad8bd89b19fbecaa42"
+      }
     }
   }
 }
