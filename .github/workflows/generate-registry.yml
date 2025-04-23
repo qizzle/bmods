@@ -47,6 +47,15 @@ jobs:
               metadata.name = nameMatch[1];
             }
             
+            // Extract description - could be in data block or info block
+            let descriptionMatch = content.match(/data:\s*{[^}]*description:\s*"([^"]+)"/s);
+            if (!descriptionMatch) {
+              descriptionMatch = content.match(/info:\s*{[^}]*description:\s*"([^"]+)"/s);
+            }
+            if (descriptionMatch && descriptionMatch[1]) {
+              metadata.description = descriptionMatch[1];
+            }
+            
             // Extract modules
             const modulesMatch = content.match(/modules:\s*\[(.*?)\]/s);
             if (modulesMatch && modulesMatch[1]) {
@@ -96,8 +105,8 @@ jobs:
                 metadata.author = dataJson.author;
               }
               
-              // Only for Automations
-              if (folderType === 'Automations' && dataJson.description) {
+              // For Automations and now also for any type that might have description
+              if (dataJson.description) {
                 metadata.description = dataJson.description;
               }
               
