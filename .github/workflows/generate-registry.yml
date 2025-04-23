@@ -29,6 +29,86 @@ jobs:
         const folders = ["Actions", "Automations", "Events", "Themes", "Translations"];
         const registry = {};
 
+        // Calculate MD5 hash for a file
+        const calculateMD5 = (filePath) => {
+          const fileContent = fs.readFileSync(filePath);
+          return crypto.createHash('md5').update(fileContent).digest('hex');
+        };
+
+        // Extract metadata from Actions/Events JS files
+        const extractJSMetadata = (filePath) => {
+          const metadata = {};
+          try {
+            const content = fs.readFileSync(filePath, 'utf8');
+            
+            // Extract name
+            const nameMatch = content.match(/data:\s*{\s*name:\s*"([^"]+)"/);
+            if (nameMatch && nameMatch[1]) {
+              metadata.name = nameMatch[1];
+            }
+            
+            // Extract modules
+            const modulesMatch = content.match(/modules:\s*\[(.*?)\]/s);
+            if (modulesMatch && modulesMatch[1]) {
+              const modulesStr = modulesMatch[1].trim();
+              if (modulesStr) {
+                metadata.modules = modulesStr.split(',')
+                  .map(m => m.trim().replace(/["']/g, ''))
+                  .filter(m => m);
+              } else {
+                metadata.modules = [];
+              }
+            } else {
+              metadata.modules = [];
+            }
+            
+            // Extract category
+            const categoryMatch = content.match(/category:\s*"([^"]+)"/);
+            if (categoryMatch && categoryMatch[1]) {
+              metadata.category = categoryMatch[1];
+            }
+            
+            // Extract creator from info block
+            const creatorMatch = content.match(/creator:\s*"([^"]+)"/);
+            if (creatorMatch && creatorMatch[1]) {
+              metadata.creator = creatorMatch[1];
+            }
+          } catch (err) {
+            console.error(`Error parsing JS metadata from ${filePath}:`, err);
+          }
+          return metadata;
+        };
+
+        // Extract metadata from data.json file in a directory
+        const extractDataJsonMetadata = (dirPath, folderType) => {
+          const metadata = {};
+          const dataJsonPath = path.join(dirPath, 'data.json');
+          
+          if (fs.existsSync(dataJsonPath)) {
+            try {
+              const dataJson = JSON.parse(fs.readFileSync(dataJsonPath, 'utf8'));
+              
+              if (dataJson.name) {
+                metadata.name = dataJson.name;
+              }
+              
+              if (dataJson.author) {
+                metadata.author = dataJson.author;
+              }
+              
+              // Only for Automations
+              if (folderType === 'Automations' && dataJson.description) {
+                metadata.description = dataJson.description;
+              }
+              
+            } catch (err) {
+              console.error(`Error parsing data.json from ${dataJsonPath}:`, err);
+            }
+          }
+          
+          return metadata;
+        };
+
         // Process each folder
         for (const folder of folders) {
           if (!fs.existsSync(folder)) {
@@ -40,67 +120,53 @@ jobs:
           
           // Function to walk directory recursively
           const walkDir = (dir, baseDir) => {
-            const files = fs.readdirSync(dir);
+            const items = fs.readdirSync(dir);
             
-            for (const file of files) {
-              const filePath = path.join(dir, file);
-              const stats = fs.statSync(filePath);
+            for (const item of items) {
+              const itemPath = path.join(dir, item);
+              const stats = fs.statSync(itemPath);
               
               if (stats.isDirectory()) {
-                walkDir(filePath, baseDir);
-              } else {
-                const relativePath = path.relative(baseDir, filePath);
-                
-                // Calculate MD5 hash
-                const fileContent = fs.readFileSync(filePath);
-                const md5Hash = crypto.createHash('md5').update(fileContent).digest('hex');
+                // For folder-based mods (Automations, Themes, Translations)
+                if (folder === 'Automations' || folder === 'Themes' || folder === 'Translations') {
+                  const relativePath = path.relative(baseDir, itemPath);
+                  const metadata = extractDataJsonMetadata(itemPath, folder);
+                  
+                  // Calculate checksums for all files in the directory
+                  const fileChecksums = {};
+                  const walkForChecksums = (subDir) => {
+                    const subItems = fs.readdirSync(subDir);
+                    for (const subItem of subItems) {
+                      const subItemPath = path.join(subDir, subItem);
+                      if (fs.statSync(subItemPath).isDirectory()) {
+                        walkForChecksums(subItemPath);
+                      } else {
+                        const relativeFilePath = path.relative(itemPath, subItemPath);
+                        fileChecksums[relativeFilePath] = calculateMD5(subItemPath);
+                      }
+                    }
+                  };
+                  walkForChecksums(itemPath);
+                  
+                  metadata.files = fileChecksums;
+                  registry[folder][relativePath] = metadata;
+                } else {
+                  // For Actions and Events, keep walking
+                  walkDir(itemPath, baseDir);
+                }
+              } else if (folder === 'Actions' || folder === 'Events') {
+                // For file-based mods (Actions, Events)
+                const relativePath = path.relative(baseDir, itemPath);
+                const md5Hash = calculateMD5(itemPath);
                 
                 let metadata = {
                   md5: md5Hash
                 };
                 
-                // Extract metadata for JavaScript files
-                if (path.extname(filePath) === '.js' && (folder === 'Actions' || folder === 'Automations' || folder === 'Events')) {
-                  try {
-                    // Read file content as string
-                    const content = fileContent.toString('utf8');
-                    
-                    // Extract name
-                    const nameMatch = content.match(/data:\s*{\s*name:\s*"([^"]+)"/);
-                    if (nameMatch && nameMatch[1]) {
-                      metadata.name = nameMatch[1];
-                    }
-                    
-                    // Extract modules
-                    const modulesMatch = content.match(/modules:\s*\[(.*?)\]/s);
-                    if (modulesMatch && modulesMatch[1]) {
-                      const modulesStr = modulesMatch[1].trim();
-                      if (modulesStr) {
-                        // Parse module strings from the array notation
-                        metadata.modules = modulesStr.split(',')
-                          .map(m => m.trim().replace(/["']/g, ''))
-                          .filter(m => m);
-                      } else {
-                        metadata.modules = [];
-                      }
-                    } else {
-                      metadata.modules = [];
-                    }
-                    
-                    // Extract category
-                    const categoryMatch = content.match(/category:\s*"([^"]+)"/);
-                    if (categoryMatch && categoryMatch[1]) {
-                      metadata.category = categoryMatch[1];
-                    }
-                    
-                    // Extract creator from info block
-                    const creatorMatch = content.match(/creator:\s*"([^"]+)"/);
-                    if (creatorMatch && creatorMatch[1]) {
-                      metadata.creator = creatorMatch[1];
-                    }
-                  } catch (err) {
-                    console.error(`Error parsing metadata from ${filePath}:`, err);
-                  }
+                // For JS files, extract additional metadata
+                if (path.extname(itemPath) === '.js') {
+                  const jsMetadata = extractJSMetadata(itemPath);
+                  metadata = { ...metadata, ...jsMetadata };
                 }
                 
                 registry[folder][relativePath] = metadata;
@@ -121,5 +187,5 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add registry.json
-        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with latest mod metadata"
+        git diff --quiet && git diff --staged --quiet || git commit -m "Update registry.json with folder-specific metadata"
         git push
