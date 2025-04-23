@@ -61,15 +61,6 @@
       "category": "Canvas Images",
       "creator": "TheMonDon"
     },
-    "CanvasGenerateProgressBar.js": {
-      "md5": "1281aeebdbfd9457f1da1276f1d4c1f9",
-      "name": "Canvas Generate Progress Bar",
-      "modules": [
-        "canvas"
-      ],
-      "category": "Canvas Images",
-      "creator": "TheMonDon"
-    },
     "CanvasImageFilter_MOD.js": {
       "md5": "a3f5caaa7211a526d943bd26eb5383b3",
       "name": "Canvas Image Filter",
@@ -206,13 +197,6 @@
       "category": "Lists",
       "creator": "LikRus"
     },
-    "createFile.js": {
-      "md5": "fd85461507b50d1c215abce98e30986e",
-      "name": "Create File",
-      "modules": [],
-      "category": "Files",
-      "creator": "Acedia Fixes"
-    },
     "createFolder_MOD.js": {
       "md5": "533d8877630922c8b3a59145c5810796",
       "name": "Create Folder",
@@ -295,13 +279,6 @@
       "modules": [],
       "category": "AI",
       "creator": "qschnitzel, splatchoot"
-    },
-    "execute.js": {
-      "md5": "47513c9b2412e154c2a88e47545f3cfb",
-      "name": "Execute",
-      "modules": [],
-      "category": "Control",
-      "creator": "Acedia Fixes"
     },
     "expiredTimestampsChecker_MOD.js": {
       "md5": "5f2879369d5d658d5ed845872944a0fd",
@@ -440,13 +417,6 @@
       ],
       "category": "WebAPIs",
       "creator": "candiedapple"
-    },
-    "getBotInfo.js": {
-      "md5": "e6a380f60a42e434a60bf55280c7fa17",
-      "name": "Get Bot Info",
-      "modules": [],
-      "category": "Bot",
-      "creator": "Acedia Fixes"
     },
     "getChannelMentions_MOD.js": {
       "md5": "68960f6e8c40f0a0898c28438ff6b772",
@@ -708,13 +678,6 @@
       "category": "Text",
       "creator": "tao"
     },
-    "joinVoiceChannel.js": {
-      "md5": "9ce953c809eaa964d45f0797df210203",
-      "name": "Join Voice Channel",
-      "modules": [],
-      "category": "Channels",
-      "creator": "Acedia Fixes"
-    },
     "jsonPath_MOD.js": {
       "md5": "074ea954068a267a7fc04dbaaa7a09dd",
       "name": "Json Path",
@@ -798,25 +761,11 @@
       "category": "Global Data",
       "creator": "candiedapple"
     },
-    "multiCompare.js": {
-      "md5": "7a94660be81a4f0f2ee3b05ac2341b16",
-      "name": "Multiple Comparisons",
-      "modules": [],
-      "category": "Control",
-      "creator": "Acedia QOLs"
-    },
     "multicheckIfMemberHasRole_MOD.js": {
       "md5": "826898159b88446584f0ca9b576d00a8",
       "name": "Multi Check If Member Has Role",
       "modules": [],
       "category": "Members",
-      "creator": "LikRus"
-    },
-    "multicreateListElement.js": {
-      "md5": "fcfc20c4338a46073862815e7d942a53",
-      "name": "Multi Create List Element",
-      "modules": [],
-      "category": "Lists",
       "creator": "LikRus"
     },
     "multipleRegexComparisons_MOD.js": {
@@ -900,20 +849,6 @@
       "category": "Music",
       "creator": "Acedia"
     },
-    "playMP3.js": {
-      "md5": "40b30ca528fce14d769a8571ae011202",
-      "name": "Play File",
-      "modules": [
-        "fs",
-        "ffmpeg",
-        "stream",
-        "@discordjs/voice",
-        "libsodium",
-        "libsodium-wrappers"
-      ],
-      "category": "Music",
-      "creator": "Acedia QOLs"
-    },
     "playMusic_MOD.js": {
       "md5": "9f6bb15cf511a9504f8e759da66abf69",
       "name": "Play Music",
@@ -924,13 +859,6 @@
       ],
       "category": "Discord-Player Music",
       "creator": "TheMonDon"
-    },
-    "playYT.js": {
-      "md5": "a4777a9e1f55553e6efb476ebc7ef595",
-      "name": "Play YouTube Song",
-      "modules": [],
-      "category": "Music",
-      "creator": "Acedia QOLs"
     },
     "postgresConnection_MOD.js": {
       "md5": "c478702125d1fe1abe4bacf50fb42a5d",
@@ -1108,12 +1036,6 @@
       ],
       "category": "Game",
       "creator": "candiedapple"
-    },
-    "skipInQueue.js": {
-      "md5": "3c108735e918346ff285d11d48656f2f",
-      "name": "Skip In Queue",
-      "modules": [],
-      "category": "Music"
     },
     "sliceList_MOD.js": {
       "md5": "f716f9e3455ee79ef05b6eb69e11bbcf",
@@ -1295,30 +1217,6 @@
       "md5": "9646723c7ba9684c9886652d223d7231",
       "modules": [],
       "creator": "nitiqt"
-    },
-    "member_timeout_add.js": {
-      "md5": "cbf1ad9e7199609c295b723d1ceedc14",
-      "modules": []
-    },
-    "member_timeout_remove.js": {
-      "md5": "6248526fdc129291dd20abafcc452784",
-      "modules": []
-    },
-    "music_queue_end.js": {
-      "md5": "a0478749a5feb16ffd9c62547abde291",
-      "modules": []
-    },
-    "music_track_add.js": {
-      "md5": "cba247f818ee7010cf6debd9a241d7d0",
-      "modules": []
-    },
-    "music_track_start.js": {
-      "md5": "7420f5b997a236b3bed43277c294decd",
-      "modules": []
-    },
-    "music_tracks_add.js": {
-      "md5": "764f33e481b0e8fb886fab7291e79d48",
-      "modules": []
     },
     "queue_start_MOD.js": {
       "md5": "74e1833f9220d783f5409a82171b0a0c",
