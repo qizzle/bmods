@@ -1206,44 +1206,89 @@
   "Events": {
     "audit_log_created_MOD.js": {
       "md5": "6559563f4b2ff640ce597aafa1efee05",
+      "name": "Audit Log Created",
+      "nameSchemes": [
+        "Store AuditLog As"
+      ],
       "modules": []
     },
     "member_avatar_changed_MOD.js": {
       "md5": "638b3468fc4478bafcd34b9898e11017",
+      "name": "Member Avatar Changed",
+      "nameSchemes": [
+        "Store Member As",
+        "Store Server As",
+        "Store New Avatar As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "member_nickname_changed_MOD.js": {
       "md5": "9646723c7ba9684c9886652d223d7231",
+      "name": "Member Nickname Changed",
+      "nameSchemes": [
+        "Store Member As",
+        "Store Server As",
+        "Store New Nickname As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "queue_start_MOD.js": {
       "md5": "74e1833f9220d783f5409a82171b0a0c",
+      "name": "Queue Start",
+      "nameSchemes": [
+        "Store Voice Channel As"
+      ],
       "modules": []
     },
     "scheduled_event_update_MOD.js": {
       "md5": "15a3399328a59a449d84359920a68f45",
+      "name": "Scheduled Event Update",
+      "nameSchemes": [
+        "Store Scheduled Before Update As",
+        "Store Scheduled After Update As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "scheduled_event_user_add_MOD.js": {
       "md5": "c42f44250a1c812c1fdcf7b250c6e318",
+      "name": "Scheduled Event User Add",
+      "nameSchemes": [
+        "Store Scheduled Event ID As",
+        "Store User As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "scheduled_event_user_remove_MOD.js": {
       "md5": "838601da5dad85a59de4ecf0d1d1636a",
+      "name": "Scheduled Event User Remove",
+      "nameSchemes": [
+        "Store Scheduled Event ID As",
+        "Store User As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "user_avatar_changed_MOD.js": {
       "md5": "297fc1e56831adbefe57439f6444b713",
+      "name": "User Avatar Changed",
+      "nameSchemes": [
+        "Store User As",
+        "Store New Avatar As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     },
     "user_name_changed_MOD.js": {
       "md5": "ce87189d01a956badc5f402de01ba972",
+      "name": "User Name Changed",
+      "nameSchemes": [
+        "Store User As",
+        "Store New Name As"
+      ],
       "modules": [],
       "creator": "nitiqt"
     }
