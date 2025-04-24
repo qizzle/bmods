@@ -890,8 +890,9 @@
       "creator": "qschnitzel"
     },
     "profanityAPI_MOD.js": {
-      "md5": "c40fbfa74cfce3de3be5422c384a5ba4",
+      "md5": "7c38c7830d992ad6b8ac3bca2ce3c1e4",
       "name": "Profanity API",
+      "description": "Check if a message contains profanity using the Profanity API.",
       "modules": [],
       "category": "Text",
       "creator": "qschnitzel"
