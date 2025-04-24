@@ -13,6 +13,7 @@ module.exports = {
     source: "https://github.com/RatWasHere/bmods/tree/master/Actions",
     creator: "qschnitzel",
     donate: "https://ko-fi.com/qschnitzel",
+    description: "Use an AI to generate a response based on a prompt.",
   },
   category: "AI",
   UI: [
