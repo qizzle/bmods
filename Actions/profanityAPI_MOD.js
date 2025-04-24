@@ -14,6 +14,8 @@ module.exports = {
     source: "https://github.com/RatWasHere/bmods/tree/master/Actions",
     creator: "qschnitzel",
     donate: "https://ko-fi.com/qschnitzel",
+    description:
+      "Check if a message contains profanity using the Profanity API.",
   },
   category: "Text",
   UI: [
