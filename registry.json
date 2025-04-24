@@ -1213,19 +1213,7 @@
       "creator": "Acedia QOLs"
     }
   },
-  "Automations": {
-    "ModManager": {
-      "name": "Mod Manager",
-      "author": "qschnitzel",
-      "description": "Manage & install your mods easily.",
-      "files": {
-        "data.json": "4bf7df572d5aa1e07c49e87cc23b3a76",
-        "installed.json": "99914b932bd37a50b983c5e7c90ae93b",
-        "main.js": "0f546e81e34d9973f999fba34060849b",
-        "modmanager.html": "2a49aa02c4396ffa87f71ffa10ff19c8"
-      }
-    }
-  },
+  "Automations": {},
   "Events": {
     "audit_log_created_MOD.js": {
       "md5": "6559563f4b2ff640ce597aafa1efee05",
