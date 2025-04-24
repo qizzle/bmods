@@ -183,6 +183,11 @@ jobs:
                   continue; // Skip default translations
                 }
                 
+                // Skip ModManager in Automations
+                if (folder === 'Automations' && item === 'ModManager') {
+                  continue; // Skip ModManager in Automations
+                }
+                
                 // For folder-based mods (Automations, Themes, Translations)
                 if (folder === 'Automations' || folder === 'Themes' || folder === 'Translations') {
                   const relativePath = path.relative(baseDir, itemPath);
