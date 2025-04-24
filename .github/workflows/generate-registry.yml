@@ -178,6 +178,11 @@ jobs:
               const stats = fs.statSync(itemPath);
               
               if (stats.isDirectory()) {
+                // Skip translations with .default_ prefix
+                if (folder === 'Translations' && item.startsWith('.default_')) {
+                  continue; // Skip default translations
+                }
+                
                 // For folder-based mods (Automations, Themes, Translations)
                 if (folder === 'Automations' || folder === 'Themes' || folder === 'Translations') {
                   const relativePath = path.relative(baseDir, itemPath);
