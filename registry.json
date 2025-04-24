@@ -71,8 +71,9 @@
       "creator": "TheMonDon"
     },
     "animeSearch_MOD.js": {
-      "md5": "4a76e5f5c3f2916b365983df27c21751",
+      "md5": "f025d15bf9187e13760bdeffbd2178d6",
       "name": "Anime Search",
+      "description": "Search for an anime and get the best result with more details.",
       "modules": [],
       "category": "Anime",
       "creator": "qschnitzel"
