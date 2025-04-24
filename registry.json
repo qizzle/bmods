@@ -78,8 +78,9 @@
       "creator": "qschnitzel"
     },
     "askAI_MOD.js": {
-      "md5": "ba74217c819dec0eb234f2d01fcaa24e",
+      "md5": "186dbbdec8f1d3badd172ba0f6810653",
       "name": "Ask AI",
+      "description": "Use an AI to generate a response based on a prompt.",
       "modules": [],
       "category": "AI",
       "creator": "qschnitzel"
