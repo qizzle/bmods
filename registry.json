@@ -276,8 +276,9 @@
       "creator": "nitiqt"
     },
     "elevenlabs_MOD.js": {
-      "md5": "082254dc0c1d70cd658dc0fd08150077",
+      "md5": "30ecdb0176e1e0c27d0d18b1eede6af6",
       "name": "Elevenlabs",
+      "description": "Create Text-To-Speech audio using Elevenlabs API.",
       "modules": [],
       "category": "AI",
       "creator": "qschnitzel, splatchoot"
@@ -550,8 +551,9 @@
       "creator": "Acedia QOLs"
     },
     "getMinecraftSkin_MOD.js": {
-      "md5": "ac6dd17dd5103c3c79dd57e5091d1000",
+      "md5": "d29e49bda08b8ee1c8a199e8436f103d",
       "name": "Get Minecraft Skin",
+      "description": "Get any Minecraft skin by its username.",
       "modules": [],
       "category": "Game",
       "creator": "qschnitzel"
@@ -635,8 +637,9 @@
       "creator": "candiedapple"
     },
     "googleTranslate_MOD.js": {
-      "md5": "4199a9c0be01abc9eade2d6d9143b8bf",
+      "md5": "55a28049b54542e109bb97a4caca946e",
       "name": "Google Translate",
+      "description": "Translate text using Google Translate.",
       "modules": [],
       "category": "Text",
       "creator": "qschnitzel"
@@ -879,8 +882,9 @@
       "creator": "TheMonDon"
     },
     "prodia_MOD.js": {
-      "md5": "d1aab1afb58b17db5efd152495762a27",
+      "md5": "2433cfad501816f47e8a098e17991c68",
       "name": "Prodia",
+      "description": "Generate images using prodia.com. Requires an API key from prodia.com.",
       "modules": [],
       "category": "AI",
       "creator": "qschnitzel"
@@ -893,8 +897,9 @@
       "creator": "qschnitzel"
     },
     "pterodactyl_MOD.js": {
-      "md5": "39fc6b0e946db5922163938811e85e96",
+      "md5": "b7a54ba6c0834c502bf4e18b5f5e90f7",
       "name": "Pterodactyl",
+      "description": "Manage your individual Pterodactyl servers.",
       "modules": [],
       "category": "API",
       "creator": "qschnitzel"
@@ -907,8 +912,9 @@
       "creator": "Made with <3 by @lucxanul"
     },
     "randomMeme_MOD.js": {
-      "md5": "639314083ce435df9e6cc6cae8e34243",
+      "md5": "958a1a27f541ae480e581cfccf1203fb",
       "name": "Random Meme",
+      "description": "Fetches a random meme from Reddit.",
       "modules": [],
       "category": "Memes",
       "creator": "qschnitzel"
@@ -1056,8 +1062,9 @@
       "creator": "candiedapple"
     },
     "stablediffusion_MOD.js": {
-      "md5": "e6fb0b111d6a65d294b049d2868cd23b",
+      "md5": "b0c1c73ee73d7e5b44de022f9702d552",
       "name": "Stable Diffusion",
+      "description": "Generate images from text using Stable Diffusion.",
       "modules": [],
       "category": "Images",
       "creator": "qschnitzel"
@@ -1134,8 +1141,9 @@
       "creator": "Acedia"
     },
     "tiktokTTS_MOD.js": {
-      "md5": "df9ef48275192969aa7caeef104cc911",
+      "md5": "99f4a5c5282993061d4a75ee5c2ef7ee",
       "name": "Tiktok TTS",
+      "description": "Create Text-To-Speech audio using Tiktok's TTS.",
       "modules": [],
       "category": "AI",
       "creator": "qschnitzel"
