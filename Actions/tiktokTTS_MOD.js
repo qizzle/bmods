@@ -15,6 +15,7 @@ module.exports = {
     source: "https://github.com/RatWasHere/bmods/tree/master/Actions",
     creator: "qschnitzel",
     donate: "https://ko-fi.com/qschnitzel",
+    description: "Create Text-To-Speech audio using Tiktok's TTS.",
   },
   category: "AI",
   UI: [

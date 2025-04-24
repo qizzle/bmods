@@ -12,6 +12,7 @@ module.exports = {
     source: "https://github.com/RatWasHere/bmods/tree/master/Actions",
     creator: "qschnitzel",
     donate: "https://ko-fi.com/qschnitzel",
+    description: "Get any Minecraft skin by its username.",
   },
   category: "Game",
   UI: [
